@@ -137,15 +137,16 @@ class Photos
     }
 
     // Adds new images to database..
-    public function addPhoto($newfilename, $catId)
+    public function addPhoto($newfilename, $catId, $email)
     {
     	//initial query
-		$query = "INSERT INTO pictures ( picName, categoryId, uploadedDate ) VALUES ( :picName, :catId, now() )";
+		$query = "INSERT INTO pictures ( picName, categoryId, uploadedDate, authorEmail ) VALUES ( :picName, :catId, now(), :email )";
 
 		//Update query
 		$query_params = array(
 		':picName' => $newfilename,
 		':catId' => $catId,
+		':email' => $email,
 		);
 
 		//execute query

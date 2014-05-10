@@ -72,6 +72,13 @@ $photos = new Photos();
 	    	<section>
 				<img src="uploads/<?php print $row['picName']; ?>" class="mainImg" />
 				<p> Ups: <?php print $row['upVotes']; ?> -- Downs: <?php print $row['downVotes']; ?></p>
+				<p>
+				<?php
+				if(!empty($row['authorEmail'])){
+				?>
+					<a href="mailto:<?php print $row['authorEmail']; ?>"><img src="imgs/icon_email.png" style="width:30px;height:30px"/></a> 
+				<?php } ?>
+				</p>
 			</section>
 	    <?php
 	}
