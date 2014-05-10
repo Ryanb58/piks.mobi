@@ -1,0 +1,26 @@
+body, html
+{
+	background: #CACABC;
+}
+
+#wrapper
+{
+	max-width: 900px;
+	margin:auto;
+	padding: 20px;
+	background: #FFFFFF;
+}
+
+section
+{
+	max-width: 800px;
+	margin:auto;
+	padding-top: 20px;
+	text-align: center;
+}
+
+section img
+{
+	max-width:100% !important;
+    height:auto;
+}
