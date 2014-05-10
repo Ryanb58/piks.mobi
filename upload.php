@@ -3,36 +3,24 @@
 include('/template/header.php');
 
 ?>
-
-<select id = "myList">           
-<?php
-//Get the options from the database...
-	$query = "SELECT * FROM categories ORDER BY categoryName ASC";
-	//execute query
-	try {
-	    $stmt   = $db->prepare($query);
-	    $result = $stmt->execute();
-	}
-	catch (PDOException $ex) {
-		echo 'ERROR: ' . $ex->getMessage();
-	}
-
-	//Fetch each row invidually...
-	while($row = $stmt->fetch()) {
-	    print_r($row);
-
-	    ?>
-	    <option value="1">one</option>
-	    <?php
-	}
-?>
-</select>
 <?php
 
+/*
+	Handle the file upload...
+*/
 
 if($_SERVER["REQUEST_METHOD"] == 'POST')
 {
+	if(empty($_POST["categoryId"]))
+	{
+		echo "Empty...";
+	}
+	else
+	{
+		echo $_POST["categoryId"];		
+	}
 
+	
 	$rootUploadFolder = "uploads/";
 
 	$allowedExts = array("gif", "jpeg", "jpg", "png");
@@ -40,13 +28,14 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 	$extension = end($temp);
 
 	if ((($_FILES["file"]["type"] == "image/gif")
-	|| ($_FILES["file"]["type"] == "image/jpeg")
-	|| ($_FILES["file"]["type"] == "image/jpg")
-	|| ($_FILES["file"]["type"] == "image/pjpeg")
-	|| ($_FILES["file"]["type"] == "image/x-png")
-	|| ($_FILES["file"]["type"] == "image/png"))
-	&& ($_FILES["file"]["size"] < 2000000)
-	&& in_array($extension, $allowedExts)) {
+		|| ($_FILES["file"]["type"] == "image/jpeg")
+		|| ($_FILES["file"]["type"] == "image/jpg")
+		|| ($_FILES["file"]["type"] == "image/pjpeg")
+		|| ($_FILES["file"]["type"] == "image/x-png")
+		|| ($_FILES["file"]["type"] == "image/png"))
+		&& ($_FILES["file"]["size"] < 2000000)
+		&& in_array($extension, $allowedExts)) 
+	{
 		if ($_FILES["file"]["error"] > 0) 
 		{
 			echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
@@ -59,12 +48,10 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 			echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
 			echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
 
-
 			//Get the file's new name.
 			$filename = $_FILES["file"]["name"];
 			$extension = end(explode(".", $filename));
 			$newfilename= md5_file($_FILES["file"]["tmp_name"]) . "." . $extension;
-
 
 			if (file_exists($rootUploadFolder . $newfilename)) 
 			{
@@ -72,7 +59,6 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 			} 
 			else 
 			{
-
 				//print "New File Name : " . $newfilename;
 
 				move_uploaded_file($_FILES["file"]["tmp_name"], $rootUploadFolder . $newfilename);
@@ -86,7 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 				//Update query
 				$query_params = array(
 				':picName' => $newfilename,
-				':catId' => '0',
+				':catId' => $_POST["categoryId"],
 				);
 
 				//execute query
@@ -104,11 +90,36 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 	{
 		echo "Invalid file";
 	}
+	
 }
 ?>
 
-	<form action="upload.php" method="post"
-	    enctype="multipart/form-data">
+	<form action="upload.php" method="post" enctype="multipart/form-data">
+
+	    <select name="categoryId">           
+		<?php
+		//Get the options from the database...
+			$query = "SELECT * FROM categories ORDER BY categoryName ASC";
+			//execute query
+			try {
+			    $stmt   = $db->prepare($query);
+			    $result = $stmt->execute();
+			}
+			catch (PDOException $ex) {
+				echo 'ERROR: ' . $ex->getMessage();
+			}
+
+			//Fetch each row invidually...
+			while($row = $stmt->fetch()) {
+			    print_r($row);
+
+			    ?>
+			    <option value="<?php print $row['categoryId']; ?>"><?php print $row['categoryName']; ?></option>
+			    <?php
+			}
+		?>
+		</select>
+
 	    <label for="file">Filename:</label>
 	    <input type="file" name="file" id="file"><br>
 	    <input type="submit" name="submit" value="Submit">
