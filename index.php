@@ -29,7 +29,7 @@ include('/template/header.php');
 		$page = 0;
 	}
 
-	$limit = 1;
+	$limit = 3;
 	$start = $page * $limit;
 
 	if(isset($_GET['sort']))
@@ -82,6 +82,42 @@ include('/template/header.php');
 	}
 
 ?>	
+
+
+<?php
+
+//Get the current page(if one).. if page = 0 or null then disable newer button... Else enable it.. 
+
+$tag = '?';
+if(isset($_GET['sort']))
+{
+	$prevURL = "?sort=" . $_GET['sort'];
+	$nextURL = "?sort=" . $_GET['sort'];
+	$tag = '&';
+}
+if(!isset($_GET['page']))
+{
+	$disabled = "disabled";
+	$previousPage = 1;
+	$prevURL = $prevURL . $tag . "page=" . $previousPage;
+}
+else
+{
+	$disabled = "";
+	$previousPage = $_GET['page'] + 1;
+	$nextPage = $_GET['page'] - 1;
+
+	$prevURL = $prevURL . $tag . "page=" . $previousPage;
+	$nextURL = $nextURL . $tag . "page=" . $nextPage;
+}
+
+?>
+
+<ul class="pager">
+  <li class="previous"><a href="<?php print $prevURL; ?>">&larr; Older</a></li>
+  <li class="next <?php print $disabled; ?>"><a href="<?php print $nextURL; ?>">Newer &rarr;</a></li>
+</ul>
+
 
 <?php
 

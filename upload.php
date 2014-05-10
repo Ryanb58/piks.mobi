@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 				//print "Uploaded MD5: " . md5_file($rootUploadFolder . $_FILES["file"]["name"]);
 
 				//initial query
-				$query = "INSERT INTO pictures ( picName, categoryId ) VALUES ( :picName, :catId )";
+				$query = "INSERT INTO pictures ( picName, categoryId, uploadedDate ) VALUES ( :picName, :catId, now() )";
 
 				//Update query
 				$query_params = array(
