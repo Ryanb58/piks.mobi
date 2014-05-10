@@ -18,10 +18,13 @@ require_once("controllers/photos.php");
 	
 	<link href="css/template.css" rel="stylesheet" />
 
-	<!-- Load all the javascript after... -->
+	<!-- Load all the javascript after... 
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-	<script type="test/javascript" src="js/bootstrap.min.js"></script>
-  
+	<script type="test/javascript" src="js/bootstrap.js"></script>-->
+
+  <!-- include javascript, jQuery FIRST -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 	
 	<meta name="viewport" content="width=dvice-width, initial-scale=1.0" />
 	

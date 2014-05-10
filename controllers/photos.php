@@ -90,7 +90,7 @@ class Photos
     }
 
     // Returns Photos
-    public function getPhotos($page=0, $sort='week') {
+    public function getPhotos($page=0, $sort='week', $catId=None) {
         //Get images from database
 
 		$limit = 3;
@@ -109,7 +109,17 @@ class Photos
 				break;
 		}
 
-		$query = "SELECT * FROM pictures WHERE uploadedDate BETWEEN date_sub(now(),INTERVAL 1 $sortBy) AND now() ORDER BY uploadedDate DESC LIMIT $start , $limit";
+		if(empty($catId) || $catId == None)
+		{
+			//do nothing...
+			$catQuery = "";
+		}
+		else
+		{
+			$catQuery = "AND (categoryID = " . $catId . ")";
+		}
+
+		$query = "SELECT * FROM pictures WHERE uploadedDate BETWEEN date_sub(now(),INTERVAL 1 $sortBy ) AND now() $catQuery ORDER BY uploadedDate DESC LIMIT $start , $limit";
 
 		//execute query
 		try {
@@ -147,5 +157,22 @@ class Photos
 			echo "ERROR with database...";
 		}
     }
+
+    public function getPhotoCategories()
+    {
+    	//Get the options from the database...
+		$query = "SELECT * FROM categories ORDER BY categoryName ASC";
+		//execute query
+		try {
+		    $stmt   = $this->db->prepare($query);
+		    $result = $stmt->execute();
+
+		    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    		return $results;
+		}
+		catch (PDOException $ex) {
+			echo 'ERROR: ' . $ex->getMessage();
+		}
+	}
 }
 ?>
