@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2014 at 05:19 AM
+-- Generation Time: May 10, 2014 at 09:14 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -50,17 +50,23 @@ CREATE TABLE IF NOT EXISTS `pictures` (
   `picName` varchar(64) NOT NULL,
   `categoryID` int(11) NOT NULL,
   `authorEmail` varchar(256) DEFAULT NULL,
+  `uploadedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `categoryID` (`categoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `pictures`
 --
 
-INSERT INTO `pictures` (`ID`, `picName`, `categoryID`, `authorEmail`) VALUES
-(1, '1.jpg', 0, NULL),
-(2, 'guy-in-college-freshman-meme-now-stars-in-a-new-college-senior-m', 0, NULL);
+INSERT INTO `pictures` (`ID`, `picName`, `categoryID`, `authorEmail`, `uploadedDate`) VALUES
+(27, '36f34c72743b41940972cd5f3de0442e.jpg', 0, NULL, '2014-05-10 06:44:54'),
+(28, '5f4c5e13cc3f1d77a4af7b1c067731bf.jpg', 0, NULL, '2014-05-10 06:44:57'),
+(29, 'b4a894f4856c79967a47b2974614a8f1.jpg', 0, NULL, '2014-05-10 06:45:00'),
+(30, 'b602f7aed638ce92c740cdbc6d1bdbdf.jpg', 0, NULL, '2014-05-10 06:45:02'),
+(31, '6a17caad71989830d740d91288a88250.jpg', 0, NULL, '2014-05-10 06:45:09'),
+(32, '653e9b127af5f3b43831bc4f4777fb8c.jpg', 0, NULL, '2014-05-10 06:45:11'),
+(33, 'f3033d3453e0498797d09961bdedba1c.jpg', 0, NULL, '2014-05-10 06:45:18');
 
 -- --------------------------------------------------------
 
