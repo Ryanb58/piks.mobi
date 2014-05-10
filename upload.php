@@ -6,6 +6,8 @@ include('/template/header.php');
 if($_SERVER["REQUEST_METHOD"] == 'POST')
 {
 
+	$rootUploadFolder = "uploads/";
+
 	$allowedExts = array("gif", "jpeg", "jpg", "png");
 	$temp = explode(".", $_FILES["file"]["name"]);
 	$extension = end($temp);
@@ -29,19 +31,34 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 			echo "Type: " . $_FILES["file"]["type"] . "<br>";
 			echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
 			echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
-			if (file_exists("uploads/" . $_FILES["file"]["name"])) {
-			  echo $_FILES["file"]["name"] . " already exists. ";
-			} else {
-				
-				move_uploaded_file($_FILES["file"]["tmp_name"], "uploads/" . $_FILES["file"]["name"]);
-				echo "Stored in: " . "uploads/" . $_FILES["file"]["name"];
+
+
+			//Get the file's new name.
+			$filename = $_FILES["file"]["name"];
+			$extension = end(explode(".", $filename));
+			$newfilename= md5_file($_FILES["file"]["tmp_name"]) . "." . $extension;
+
+
+			if (file_exists($rootUploadFolder . $newfilename)) 
+			{
+				echo $newfilename . " already exists. ";
+			} 
+			else 
+			{
+
+				//print "New File Name : " . $newfilename;
+
+				move_uploaded_file($_FILES["file"]["tmp_name"], $rootUploadFolder . $newfilename);
+				echo "Stored in: " . $rootUploadFolder . $_FILES["file"]["name"];
+
+				//print "Uploaded MD5: " . md5_file($rootUploadFolder . $_FILES["file"]["name"]);
 
 				//initial query
-				$query = "INSERT INTO pictures ( picName, categoryId ) VALUES ( :picName, :catId ) ";
+				$query = "INSERT INTO pictures ( picName, categoryId ) VALUES ( :picName, :catId )";
 
 				//Update query
 				$query_params = array(
-				':picName' => $_FILES["file"]["name"],
+				':picName' => $newfilename,
 				':catId' => '0',
 				);
 
