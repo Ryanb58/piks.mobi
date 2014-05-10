@@ -44,7 +44,7 @@ section img
 
 .fileUpload {
 	position: relative;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	margin-top: 10px;
 }
 

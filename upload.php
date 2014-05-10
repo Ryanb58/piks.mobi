@@ -91,15 +91,16 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 <form role="form" action="upload.php" method="post" enctype="multipart/form-data">
 
 	<div id="upFormLeft">
-		<div class="fileUpload btn btn-primary btn-large">
-			<span>Upload</span>
-			<input type="file" name ="file" class="upload" />
-		</div>
-	</div>
-
-	<div id="upFormRight">
-		<select name="categoryId" class="form-control" >
+		
 	    
+
+		
+		<input id="file" type="file" name ="file" class="upload" />
+
+		<br />
+
+
+		<select name="categoryId" class="form-control" >
 		<?php
 		//Get the options from the database...
 			$query = "SELECT * FROM categories ORDER BY categoryName ASC";
@@ -122,8 +123,10 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 			}
 		?>
 		</select>
-	    
-	    <br />
+	</div>
+
+	<div id="upFormRight">
+		
 
 
 		<div class="form-group">
@@ -138,8 +141,6 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 	
 	</form>
 </div>
-
-<input 
 
 <?php
 
