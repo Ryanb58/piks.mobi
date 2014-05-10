@@ -43,7 +43,7 @@ require_once("controllers/photos.php");
           <div class="navbar-collapse collapse" id="navigationbar">
 
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="./">Default</a></li>
+              <li><a href="./">Default</a></li>
               <li><a href="upload.php">Upload</a></li>
               <li><a href="vote.php">Vote</a></li>
             </ul>
