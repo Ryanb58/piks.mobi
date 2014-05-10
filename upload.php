@@ -3,6 +3,11 @@
 include('/template/header.php');
 
 ?>
+
+
+
+<div id="uploadForm" class="container">
+
 <?php
 
 /*
@@ -78,10 +83,18 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 	
 }
 ?>
-	
-	<form action="upload.php" method="post" enctype="multipart/form-data">
-	    
-	    <select name="categoryId" class="form-control" >
+
+<form action="upload.php" method="post" enctype="multipart/form-data">
+
+	<div id="upFormLeft">
+		<div class="fileUpload btn btn-primary btn-large">
+			<span>Upload</span>
+			<input type="file" name ="file" class="upload" />
+		</div>
+	</div>
+
+	<div id="upFormRight">
+		<select name="categoryId" class="form-control" >
 	    
 		<?php
 		//Get the options from the database...
@@ -106,17 +119,15 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 		?>
 		</select>
 	    
-	    <br>
+	    <br />
+
+		<input type="submit" class="btn btn-default btnUpload" name="submit" value="Submit">
+	</div>
+
 	    
-	    
-	    <div class="fileUpload btn btn-primary">
-		<span>Upload</span>
-		<input type="file" name ="file" class="upload" />
-	    </div>
-	    <br>
-	    <input type="button" class="btn btn-default" name="submit" value="Submit">
-	</form>
 	
+	</form>
+</div>
 
 <?php
 
