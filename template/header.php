@@ -15,9 +15,9 @@ require_once("config.inc.php");
 	
 	<link href="css/template.css" rel="stylesheet" />
 
-  <!-- Load all the javascript after... -->
-  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-  <script type="test/javascript" src="js/bootstrap.min.js"></script>
+	<!-- Load all the javascript after... -->
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="test/javascript" src="js/bootstrap.min.js"></script>
   
 	
 	<meta name="viewport" content="width=dvice-width, initial-scale=1.0" />
@@ -29,7 +29,7 @@ require_once("config.inc.php");
       <div class="navbar navbar-inverse" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -37,7 +37,7 @@ require_once("config.inc.php");
             </button>
             <a class="navbar-brand" href="#">piks.mobi</a>
           </div>
-          <div class="navbar-collapse collapse">
+          <div class="navbar-collapse collapse" id="navigationbar">
 
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="./">Default</a></li>
@@ -47,4 +47,6 @@ require_once("config.inc.php");
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </div>
-	<div>
+      
+
+	
