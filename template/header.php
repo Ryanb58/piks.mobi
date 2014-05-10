@@ -1,27 +1,28 @@
-<!DOCTYPE html>
+<?php
 
+//Required connection to database.
+require_once("config.inc.php");
+
+?>
+
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Wassup</title>
-	<!-- Bootstrap-->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<title>TITLE</title>
 	
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<link href="jumbotron-narrow.css" rel="stylesheet">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<!--End of Bootstrap-->
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+	<link href="css/bootstrap-theme.css" rel="stylesheet" />
+	
+	<link href="css/template.css" rel="stylesheet" />
+	
+	<meta name="viewport" content="width=dvice-width, initial-scale=1.0" />
+	
 </head>
-
 <body>
-    <div class="container">
+<div id="wrapper">
 
-      <!-- Static navbar -->
-      <div class="navbar navbar-default" role="navigation">
+	<!-- Static navbar -->
+      <div class="navbar navbar-inverse" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,7 +31,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">piks.mobi</a>
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -58,10 +59,6 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </div>
-      <!-- end header -->
-      
+	
 
-
-
-</body>
-</html>
+	<div>
