@@ -102,7 +102,7 @@ if(!isset($_SESSION)){
 	    	<section>
 				<img src="uploads/<?php print $row['picName']; ?>" class="mainImg" />
                     <form action="vote.php" method="post" id="picture">
-                    	<input type="submit" class="btn btn-default" name="id" value="Upvote" />
+                    	<input type="submit" class="btn btn-default" name="id" value="Upvote"></input>
                     	<input type="hidden" name="id" value="<?php echo $id;?>" />
                     </form>
 				<p> Upvotes: 1000 -- Downvotes: 20 </p>

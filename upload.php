@@ -16,6 +16,10 @@ include('/template/header.php');
 
 if($_SERVER["REQUEST_METHOD"] == 'POST')
 {
+
+	$authorEmail = trim($_POST['email']);
+	
+
 	if(empty($_POST["categoryId"]))
 	{
 		echo "Empty...";
@@ -72,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 				//print "Uploaded MD5: " . md5_file($rootUploadFolder . $_FILES["file"]["name"]);
 
 				$photos = new Photos();
-				$photos->addPhoto($newfilename, $_POST["categoryId"]);
+				$photos->addPhoto($newfilename, $_POST["categoryId"], $authorEmail);
 			}
 		}
 	} 
@@ -84,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 }
 ?>
 
-<form action="upload.php" method="post" enctype="multipart/form-data">
+<form role="form" action="upload.php" method="post" enctype="multipart/form-data">
 
 	<div id="upFormLeft">
 		<div class="fileUpload btn btn-primary btn-large">
@@ -121,13 +125,21 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 	    
 	    <br />
 
-		<input type="submit" class="btn btn-default btnUpload" name="submit" value="Submit">
+
+		<div class="form-group">
+		    <label>Email</label>
+		    <input type="email" name="email" class="form-control" id="exampleemail" placeholder="Email">
+	    </div>
+	    <input type="submit" class="btn btn-default btnUpload" name="submit" value="Submit">
+
 	</div>
 
 	    
 	
 	</form>
 </div>
+
+<input 
 
 <?php
 
