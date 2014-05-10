@@ -82,63 +82,6 @@ $photos = new Photos();
 <?php
 
 //Get the current page(if one).. if page = 0 or null then disable newer button... Else enable it.. 
-/*
-$tag = '?';
-if(isset($_GET['sort']))
-{
-	$prevURL = "?sort=" . $_GET['sort'];
-	$nextURL = "?sort=" . $_GET['sort'];
-	$tag = '&';
-}
-if(isset($_GET['cat']))
-{
-	$prevURL = "?cat=" . $_GET['cat'];
-	$nextURL = "?cat=" . $_GET['cat'];
-	$tag = '&';
-}
-else
-{
-
-}
-if(!isset($_GET['page']) || $_GET['page'] == 0)
-{
-	$disabled = "disabled";
-	$previousPage = 1;
-	if(isset($prevURL))
-	{
-		$prevURL = $prevURL . $tag . "page=" . $previousPage;
-	}
-	else
-	{
-		$prevURL = $tag . "page=" . $previousPage;
-	}
-}
-else
-{
-	$disabled = "";
-	$previousPage = $_GET['page'] + 1;
-	$nextPage = $_GET['page'] - 1;
-
-	if(isset($prevURL))
-	{
-		$prevURL = $prevURL . $tag . "page=" . $previousPage;
-	}
-	else
-	{
-		$prevURL = $tag . "page=" . $previousPage;
-	}
-
-	if(isset($nextURL))
-	{
-		$nextURL = $nextURL . $tag . "page=" . $nextPage;
-	}
-	else
-	{
-		$nextURL = $tag . "page=" . $nextPage;
-	}
-}
-
-*/
 
 $queryNext = $_GET;
 $queryPrev = $_GET;
