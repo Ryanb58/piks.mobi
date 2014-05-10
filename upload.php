@@ -2,6 +2,33 @@
 
 include('/template/header.php');
 
+?>
+
+<select id = "myList">           
+<?php
+//Get the options from the database...
+	$query = "SELECT * FROM categories ORDER BY categoryName ASC";
+	//execute query
+	try {
+	    $stmt   = $db->prepare($query);
+	    $result = $stmt->execute();
+	}
+	catch (PDOException $ex) {
+		echo 'ERROR: ' . $ex->getMessage();
+	}
+
+	//Fetch each row invidually...
+	while($row = $stmt->fetch()) {
+	    print_r($row);
+
+	    ?>
+	    <option value="1">one</option>
+	    <?php
+	}
+?>
+</select>
+<?php
+
 
 if($_SERVER["REQUEST_METHOD"] == 'POST')
 {
@@ -18,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 	|| ($_FILES["file"]["type"] == "image/pjpeg")
 	|| ($_FILES["file"]["type"] == "image/x-png")
 	|| ($_FILES["file"]["type"] == "image/png"))
-	&& ($_FILES["file"]["size"] < 200000)
+	&& ($_FILES["file"]["size"] < 2000000)
 	&& in_array($extension, $allowedExts)) {
 		if ($_FILES["file"]["error"] > 0) 
 		{
