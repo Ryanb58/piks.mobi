@@ -17,8 +17,8 @@ include('/template/header.php');
 -->
 </ul>
 <?php
-
-	$page = 0;
+	//Init Photos
+	$photos = new Photos();
 
 	if(isset($_GET['page']))
 	{
@@ -29,9 +29,6 @@ include('/template/header.php');
 		$page = 0;
 	}
 
-	$limit = 3;
-	$start = $page * $limit;
-
 	if(isset($_GET['sort']))
 	{
 		$policy = strtolower(mysql_real_escape_string($_GET['sort']));
@@ -41,38 +38,15 @@ include('/template/header.php');
 		$policy = 'week';
 	}
 
-	switch($policy)
-	{
-		case 'day':
-			$sortBy = 'DAY';
-			break;
-		case 'week':
-			$sortBy = 'WEEK';
-			break;
-		default:
-			$sortBy = 'WEEK';
-			break;
-	}
+	$results = $photos->getPhotos($page, $policy);
 
-	$query = "SELECT * FROM pictures WHERE uploadedDate BETWEEN date_sub(now(),INTERVAL 1 $sortBy) AND now() ORDER BY uploadedDate DESC LIMIT $start , $limit";
-
-	//execute query
-	try {
-	    $stmt   = $db->prepare($query);
-	    //$stmt->bindParam(':start', $start);
-	    //$stmt->bindParam(':lim', $limit);
-
-	    $result = $stmt->execute();
-	}
-	catch (PDOException $ex) {
-		echo 'ERROR: ' . $ex->getMessage();
-	}
+	//var_dump($results);
 
 	//Fetch each row invidually...
-	while($row = $stmt->fetch()) {
-	    print_r($row);
-	    print_r($query);
-
+	foreach($results as $row)
+	{
+	    //print_r($row);
+	    //print_r($query);
 	    ?>
 	    	<section>
 				<img src="uploads/<?php print $row['picName']; ?>" class="mainImg" />
@@ -95,11 +69,18 @@ if(isset($_GET['sort']))
 	$nextURL = "?sort=" . $_GET['sort'];
 	$tag = '&';
 }
-if(!isset($_GET['page']))
+if(!isset($_GET['page']) || $_GET['page'] == 0)
 {
 	$disabled = "disabled";
 	$previousPage = 1;
-	$prevURL = $prevURL . $tag . "page=" . $previousPage;
+	if(isset($prevURL))
+	{
+		$prevURL = $prevURL . $tag . "page=" . $previousPage;
+	}
+	else
+	{
+		$prevURL = $tag . "page=" . $previousPage;
+	}
 }
 else
 {
@@ -107,8 +88,23 @@ else
 	$previousPage = $_GET['page'] + 1;
 	$nextPage = $_GET['page'] - 1;
 
-	$prevURL = $prevURL . $tag . "page=" . $previousPage;
-	$nextURL = $nextURL . $tag . "page=" . $nextPage;
+	if(isset($prevURL))
+	{
+		$prevURL = $prevURL . $tag . "page=" . $previousPage;
+	}
+	else
+	{
+		$prevURL = $tag . "page=" . $previousPage;
+	}
+
+	if(isset($nextURL))
+	{
+		$nextURL = $nextURL . $tag . "page=" . $nextPage;
+	}
+	else
+	{
+		$nextURL = $tag . "page=" . $nextPage;
+	}
 }
 
 ?>

@@ -66,23 +66,8 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 
 				//print "Uploaded MD5: " . md5_file($rootUploadFolder . $_FILES["file"]["name"]);
 
-				//initial query
-				$query = "INSERT INTO pictures ( picName, categoryId, uploadedDate ) VALUES ( :picName, :catId, now() )";
-
-				//Update query
-				$query_params = array(
-				':picName' => $newfilename,
-				':catId' => $_POST["categoryId"],
-				);
-
-				//execute query
-				try {
-					$stmt   = $db->prepare($query);
-					$result = $stmt->execute($query_params);
-				}
-				catch (PDOException $ex) {
-					echo "ERROR with database...";
-				}
+				$photos = new Photos();
+				$photos->addPhoto($newfilename, $_POST["categoryId"]);
 			}
 		}
 	} 

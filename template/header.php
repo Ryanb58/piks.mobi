@@ -3,6 +3,9 @@
 //Required connection to database.
 require_once("config.inc.php");
 
+//Connection to manipulate photos...
+require_once("controllers/photos.php");
+
 ?>
 
 <!DOCTYPE html>
