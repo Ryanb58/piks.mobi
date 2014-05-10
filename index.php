@@ -71,7 +71,7 @@ $photos = new Photos();
 	    ?>
 	    	<section>
 				<img src="uploads/<?php print $row['picName']; ?>" class="mainImg" />
-				<p> Upvotes: 1000 -- Downvotes: 20 </p>
+				<p> Ups: <?php print $row['upVotes']; ?> -- Downs: <?php print $row['downVotes']; ?></p>
 			</section>
 	    <?php
 	}

@@ -119,7 +119,7 @@ class Photos
 			$catQuery = "AND (categoryID = " . $catId . ")";
 		}
 
-		$query = "SELECT * FROM pictures WHERE uploadedDate BETWEEN date_sub(now(),INTERVAL 1 $sortBy ) AND now() $catQuery ORDER BY uploadedDate DESC LIMIT $start , $limit";
+		$query = "SELECT * FROM pictures INNER JOIN votes ON votes.voteID=pictures.ID WHERE uploadedDate BETWEEN date_sub(now(),INTERVAL 1 $sortBy ) AND now() $catQuery ORDER BY uploadedDate DESC LIMIT $start , $limit";
 
 		//execute query
 		try {
