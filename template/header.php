@@ -18,6 +18,7 @@ require_once("controllers/photos.php");
 	
 	<link href="css/template.css" rel="stylesheet" />
 
+<<<<<<< HEAD
 	<!-- Load all the javascript after... 
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 	<script type="test/javascript" src="js/bootstrap.js"></script>-->
@@ -25,6 +26,12 @@ require_once("controllers/photos.php");
   <!-- include javascript, jQuery FIRST -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+=======
+	<!-- Load all the javascript after... -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="test/javascript" src="js/bootstrap.min.js"></script>
+  
+>>>>>>> 250c11444d2000945c934cde0e1861ce1b79d971
 	
 	<meta name="viewport" content="width=dvice-width, initial-scale=1.0" />
 	
