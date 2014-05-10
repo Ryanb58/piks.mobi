@@ -68,6 +68,8 @@ include('/template/header.php');
 		echo 'ERROR: ' . $ex->getMessage();
 	}
 
+
+
 	//Fetch each row invidually...
 	while($row = $stmt->fetch()) {
 	    print_r($row);
@@ -75,21 +77,36 @@ include('/template/header.php');
             
             $id = $row['ID'];
             if(isset($_POST[$id])){
-                $query = "Update votes SET upvotes= upvotes+1 WHERE voteID = 33 "
+		
+				$query = "Update votes SET upVotes=upVotes+1 WHERE voteID = $id";
+				try {
+				    $stmt2   = $db->prepare($query);
+				    //$stmt->bindParam(':start', $start);
+				    //$stmt->bindParam(':lim', $limit);
+
+				    $result = $stmt2->execute();
+				}
+				catch (PDOException $ex) {
+					echo 'ERROR: ' . $ex->getMessage();
+				}
     
-            }
+    		}
+
+
                 
             
 	    ?>
 	    	<section>
 				<img src="uploads/<?php print $row['picName']; ?>" class="mainImg" />
                                 <form action="vote.php" method="post">
-                                <input type="submit" class="btn btn-default" name="<?php print $id;?>" value="Upload">
+                                <input type="submit" class="btn btn-default" name="<?php print $id;?>" value="Upvote">
                                 </form>
 				<p> Upvotes: 1000 -- Downvotes: 20 </p>
 			</section>
 	    <?php
 	}
+
+
 
 ?>	
 

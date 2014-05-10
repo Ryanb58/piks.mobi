@@ -114,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 		<input type="file" name ="file" class="upload" />
 	    </div>
 	    <br>
-	    <input type="button" class="btn btn-default" name="submit" value="Submit">
+	    <input type="submit" class="btn btn-default" name="submit" value="Submit">
 	</form>
 	
 

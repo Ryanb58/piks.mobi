@@ -146,6 +146,23 @@ class Photos
 		catch (PDOException $ex) {
 			echo "ERROR with database...";
 		}
+		
+		//update voteid
+		$voteiD = $this->db->lastInsertId('ID');
+		$query = "INSERT INTO votes (voteID) VALUES ( :voteID)";
+		
+		$query_params = array(
+		    ':voteID' => $voteiD,
+		);
+		
+		//execute query
+		try {
+			$stmt   = $this->db->prepare($query);
+			$result = $stmt->execute($query_params);
+		}
+		catch (PDOException $ex) {
+			echo "ERROR with database...";
+		}
     }
 }
 ?>

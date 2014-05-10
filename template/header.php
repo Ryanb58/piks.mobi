@@ -19,7 +19,7 @@ require_once("controllers/photos.php");
 	<link href="css/template.css" rel="stylesheet" />
 
 	<!-- Load all the javascript after... -->
-	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script type="test/javascript" src="js/bootstrap.min.js"></script>
   
 	
@@ -45,7 +45,7 @@ require_once("controllers/photos.php");
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="./">Default</a></li>
               <li><a href="upload.php">Upload</a></li>
-              <li><a href="#">Fixed top</a></li>
+              <li><a href="vote.php">Vote</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
