@@ -9,7 +9,24 @@ include('/template/header.php');
 if(!isset($_SESSION)){
 	session_start();
 }
-	
+	if(isset($_POST['id'])){
+		$id = $_POST['id'];
+		
+		$query = "Update votes SET upVotes=upVotes+1 WHERE voteID = $id";
+		try {
+		    $stmt2   = $db->prepare($query);
+		    //$stmt->bindParam(':start', $start);
+		    //$stmt->bindParam(':lim', $limit);
+
+		    $result = $stmt2->execute();
+		}
+		catch (PDOException $ex) {
+			echo 'ERROR: ' . $ex->getMessage();
+		}
+
+
+
+	}
 	
 	//Get the total count of pics taken in last week... blablabla
 	$query = "SELECT COUNT(*) FROM pictures WHERE uploadedDate BETWEEN date_sub(now(),INTERVAL 1 WEEK ) AND now() ORDER BY uploadedDate DESC";
@@ -61,37 +78,16 @@ if(!isset($_SESSION)){
 	
 	//Fetch each row invidually...
 	while($row = $stmt->fetch()) {
-	    //print_r($row);
-	    //print_r($query);
             
-            $id = $row['ID'];
-            if(isset($_POST[$id])){
-		
-				$query = "Update votes SET upVotes=upVotes+1 WHERE voteID = $id";
-				try {
-				    $stmt2   = $db->prepare($query);
-				    //$stmt->bindParam(':start', $start);
-				    //$stmt->bindParam(':lim', $limit);
-
-				    $result = $stmt2->execute();
-				}
-				catch (PDOException $ex) {
-					echo 'ERROR: ' . $ex->getMessage();
-				}
-
-
-    
-    		}
-
-
-                
-            
+        $id = $row['ID'];
+                  
 	    ?>
 	    	<section>
 				<img src="uploads/<?php print $row['picName']; ?>" class="mainImg" />
-                                <form action="vote.php" method="post" id="picture">
-                                	<input type="submit" class="btn btn-default" name="<?php print $id;?>" value="Upvote">
-                                </form>
+                    <form action="vote.php" method="post" id="picture">
+                    	<input type="submit" class="btn btn-default" name="id" value="Upvote" />
+                    	<input type="hidden" name="id" value="<?php echo $id;?>" />
+                    </form>
 				<p> Upvotes: 1000 -- Downvotes: 20 </p>
 			</section>
 	    <?php
