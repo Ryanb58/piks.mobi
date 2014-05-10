@@ -73,13 +73,18 @@ include('/template/header.php');
 	    print_r($row);
 	    print_r($query);
             
-            if(isset)
+            $id = $row['ID'];
+            if(isset($_POST[$id])){
+                $query = "Update votes SET upvotes= upvotes+1 WHERE voteID = 33 "
+    
+            }
                 
+            
 	    ?>
 	    	<section>
 				<img src="uploads/<?php print $row['picName']; ?>" class="mainImg" />
                                 <form action="vote.php" method="post">
-                                <input type="button" class="btn btn-default" name="<?php print $row['ID'];?>" value="<?php print $row['ID'];?>">
+                                <input type="submit" class="btn btn-default" name="<?php print $id;?>" value="Upload">
                                 </form>
 				<p> Upvotes: 1000 -- Downvotes: 20 </p>
 			</section>
