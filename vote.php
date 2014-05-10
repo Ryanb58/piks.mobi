@@ -27,7 +27,24 @@ if(!isset($_SESSION)){
 		echo 'ERROR: ' . $ex->getMessage();
 	}
 
-	
+
+	//Get the total count of pics taken in last week... blablabla
+	$query = "SELECT COUNT(*) FROM pictures WHERE uploadedDate BETWEEN date_sub(now(),INTERVAL 1 WEEK ) AND now() ORDER BY uploadedDate DESC";
+	//execute query
+	try {
+	    $stmt   = $db->prepare($query);
+	    //$stmt->bindParam(':start', $start);
+	    //$stmt->bindParam(':lim', $limit);
+
+	    $result = $stmt->execute();
+	    $maxCount = $stmt->fetch()['COUNT(*)'];
+	    //print "max: " . $maxCount . "\n";
+	}
+	catch (PDOException $ex) {
+		echo 'ERROR: ' . $ex->getMessage();
+	}
+
+
 	if(isset($_SESSION['views']))
 	{
 		$_SESSION['views'] = ($_SESSION['views'] + 1) % $maxCount;	
@@ -58,7 +75,7 @@ if(!isset($_SESSION)){
 	}
 
 
-	
+
 	//Fetch each row invidually...
 	while($row = $stmt->fetch()) {
 	    //print_r($row);
@@ -66,7 +83,7 @@ if(!isset($_SESSION)){
             
             $id = $row['ID'];
             if(isset($_POST[$id])){
-		
+
 				$query = "Update votes SET upVotes=upVotes+1 WHERE voteID = $id";
 				try {
 				    $stmt2   = $db->prepare($query);
@@ -107,5 +124,3 @@ if(!isset($_SESSION)){
 
 include('/template/footer.php');
 ?>
-
-	
