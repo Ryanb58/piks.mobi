@@ -11,7 +11,7 @@ require_once("controllers/photos.php");
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TITLE</title>
+	<title>piks.mobi</title>
 
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
 	<link href="css/bootstrap-theme.css" rel="stylesheet" />
@@ -37,12 +37,11 @@ require_once("controllers/photos.php");
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">piks.mobi</a>
+            <a class="navbar-brand" href="./">piks.mobi</a>
           </div>
           <div class="navbar-collapse collapse" id="navigationbar">
 
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="./">Default</a></li>
               <li><a href="upload.php">Upload</a></li>
               <li><a href="vote.php">Vote</a></li>
             </ul>

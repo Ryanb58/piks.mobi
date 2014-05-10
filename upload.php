@@ -7,7 +7,6 @@ include('/template/header.php');
 
 
 <div id="uploadForm" class="container">
-
 <?php
 
 /*
@@ -18,17 +17,6 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 {
 
 	$authorEmail = trim($_POST['email']);
-	
-
-	if(empty($_POST["categoryId"]))
-	{
-		echo "Empty...";
-	}
-	else
-	{
-		echo $_POST["categoryId"];		
-	}
-
 	
 	$rootUploadFolder = "uploads/";
 
@@ -52,10 +40,11 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 		else 
 		{
 
-			echo "Upload: " . $_FILES["file"]["name"] . "<br>";
-			echo "Type: " . $_FILES["file"]["type"] . "<br>";
-			echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
-			echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
+			//echo "Upload: " . $_FILES["file"]["name"] . "<br>";
+			//cho "Type: " . $_FILES["file"]["type"] . "<br>";
+			//echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+			//echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
+			print '<div class="alert alert-success"><strong>Well done!</strong> Your upload has completed.</div>';
 
 			//Get the file's new name.
 			$filename = $_FILES["file"]["name"];
@@ -71,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 				//print "New File Name : " . $newfilename;
 
 				move_uploaded_file($_FILES["file"]["tmp_name"], $rootUploadFolder . $newfilename);
-				echo "Stored in: " . $rootUploadFolder . $_FILES["file"]["name"];
+				//echo "Stored in: " . $rootUploadFolder . $_FILES["file"]["name"];
 
 				//print "Uploaded MD5: " . md5_file($rootUploadFolder . $_FILES["file"]["name"]);
 
@@ -140,6 +129,10 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 	    
 	
 	</form>
+
+	<p style="text-align:left;font-size:11px;clear:both;padding-top:10px;">
+		<strong>*</strong> Giving your email is completely optional. If you do not own this work or just want to stay annonomus, then don't! However, if you are the creator or just want to be known as the contact for this email, provide away! CAUTION: This will make your email publically available. Please contact "mod[at]piks.mobi" for any help.
+	</p>
 </div>
 
 <?php

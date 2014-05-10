@@ -64,7 +64,7 @@ if(!isset($_SESSION)){
 
 	if(isset($_SESSION['views']))
 	{
-		$_SESSION['views'] = ($_SESSION['views'] + 1) % $maxCount;	
+		$_SESSION['views'] = ($_SESSION['views'] + rand(1, 3)) % $maxCount;	
 	}
 	else
 	{
@@ -100,12 +100,11 @@ if(!isset($_SESSION)){
                   
 	    ?>
 	    	<section>
-				<img src="uploads/<?php print $row['picName']; ?>" class="mainImg" />
+				<img src="uploads/<?php print $row['picName']; ?>" class="mainImg" style="margin-bottom:10px;" />
                     <form action="vote.php" method="post" id="picture">
                     	<input type="submit" class="btn btn-default" name="id" value="Upvote"></input>
                     	<input type="hidden" name="id" value="<?php echo $id;?>" />
                     </form>
-				<p> Upvotes: 1000 -- Downvotes: 20 </p>
 			</section>
 	    <?php
 	}
