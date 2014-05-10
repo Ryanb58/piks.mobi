@@ -90,7 +90,7 @@ class Photos
     }
 
     // Returns Photos
-    public function getPhotos($page=0, $sort='week', $catId=None) {
+    public function getPhotos($page=0, $sort='week', $catId=null) {
         //Get images from database
 
 		$limit = 3;
@@ -109,7 +109,7 @@ class Photos
 				break;
 		}
 
-		if(empty($catId) || $catId == None)
+		if(empty($catId) || $catId == null)
 		{
 			//do nothing...
 			$catQuery = "";
@@ -179,6 +179,7 @@ class Photos
     {
     	//Get the options from the database...
 		$query = "SELECT * FROM categories ORDER BY categoryName ASC";
+		
 		//execute query
 		try {
 		    $stmt   = $this->db->prepare($query);

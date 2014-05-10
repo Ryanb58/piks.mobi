@@ -55,7 +55,7 @@ $photos = new Photos();
 	}
 	else
 	{
-		$cat = None;
+		$cat = null;
 	}
 
 
